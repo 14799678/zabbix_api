@@ -1,6 +1,6 @@
 # zabbix api
 ```
-vim conf/port.conf  修改文件可进行监控，
+vim conf/port.conf  修改文件可进行监控添加。
 
 [10.86.160.113] 主机ip
 flume = 1463    添加端口类型监控
