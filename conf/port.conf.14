@@ -1,0 +1,79 @@
+[192.168.16.19]
+redis = 6379
+[192.168.16.20]
+redis = 6379
+[192.168.16.21]
+redis = 6379
+[192.168.16.22]
+redis = 6379
+[192.168.16.23]
+kafka = 9092
+flume = 1463
+[192.168.16.24]
+kafka = 9092
+flume = 1463
+[192.168.16.25]
+kafka = 9092
+flume = 1463
+[192.168.16.26]
+kafka = 9092
+flume = 1463
+[192.168.16.27]
+saveservice = saveservice
+synservice = synservice
+alarmservice = alarmservice
+[192.168.16.28]
+[192.168.16.29]
+[192.168.16.30]
+[192.168.16.31]
+[192.168.16.32]
+[192.168.16.33]
+cm = 7180
+cm_mysql = 3306
+zookeeper = 2181
+
+[192.168.16.34]
+namenode = 8020
+hbase-master = 60000
+zookeeper = 2181
+
+[192.168.16.35]
+namenode = 8020
+hbase-master = 60000
+zookeeper = 2181
+
+[192.168.16.36]
+hdfs-datanode = 50010 
+hbase-region = 60020
+
+[192.168.16.37]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.38]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.39]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.40]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.41]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.42]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.43]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.44]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.45]
+hdfs-datanode = 50010 
+hbase-region = 60020
+[192.168.16.47]
+hdfs-datanode = 50010 
+hbase-region = 60020
+

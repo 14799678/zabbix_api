@@ -1,0 +1,45 @@
+[192.100.1.181]
+cm_mysql = 3306
+cm = 7180
+zookeeper = 2181
+hbase_master = 60000
+namenode = 8020
+datanode = 50010
+hbase_region = 60020
+kafka = 9092
+flume = 1463
+
+[192.100.1.182]
+hbase_master = 60000
+zookeeper = 2181
+namenode = 8020
+hbase_region = 60020
+datanode = 50010
+kafka = 9092
+flume = 1463
+
+[192.100.1.183]
+datanode = 50010
+zookeeper = 2181
+hbase_region = 60020
+redis = 6379
+storm = RedisTotalCacheInitUtil
+
+[192.100.1.184]
+plat_gb_svr = 19007
+plat_gb_cli = plat_gb_cli
+term_gb_svr = 19006
+
+[192.100.1.185]
+dubbo = 7080
+admin = 7070
+openservice = 18080
+nginx = 8000
+redis = 6380
+mysql = 3306
+
+[192.100.1.186]
+saveservice = saveservice
+synservice = synservice
+kafkaservice = Kafakaservice
+mysql = 3306

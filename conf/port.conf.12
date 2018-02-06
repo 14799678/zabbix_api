@@ -1,0 +1,56 @@
+[10.200.30.11]
+admin = 7070
+openservice = 18080
+duboo = 7080
+nginx = 8000
+web_redis = 6380
+
+[10.200.30.12]
+admin = 7070
+
+[172.20.50.15]
+web_mysql = 3306
+
+[172.20.50.16]
+vice_web_mysql = 3306
+
+[172.20.50.21]
+kafka = 9092
+flume = 1463
+
+[172.20.50.22]
+kafka = 9092
+flume = 1463
+saveservice = saveservice
+synservice = synservice
+alarmservice = alarmservice
+term_gb_svr = 19006
+plat_gb_svr = 19007
+plat_gb_cli = plat_gb_cli
+redis = 6379
+
+
+[172.20.50.31]
+namenode = 8020
+hbase-master = 60000
+cm = 7180
+cm_mysql = 3306
+
+[172.20.50.32]
+namenode = 8020
+hbase-master = 60000
+
+[172.20.50.33]
+hdfs-datanode = 50010 
+hbase-region = 60020
+zookeeper = 2181
+
+[172.20.50.34]
+hdfs-datanode = 50010 
+hbase-region = 60020
+zookeeper = 2181
+
+[172.20.50.35]
+hdfs-datanode = 50010 
+hbase-region = 60020
+zookeeper = 2181
