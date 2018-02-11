@@ -1,5 +1,7 @@
 # zabbix api
 ```
+会不断完善...
+
 vim conf/port.conf  修改文件可进行监控添加。
 
 [10.86.160.113] 主机ip
