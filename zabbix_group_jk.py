@@ -11,7 +11,14 @@ import ConfigParser
 
 
 # 组的名字
-group_name = u"吉利汽车"
+# group_name = u"吉利汽车"
+
+if len(sys.argv) == 1:
+    print(u"请跟参数,参数为zabbix组的名字")
+    exit(1)
+
+group_name = sys.argv[1]
+
 
 
 ##################################################################################
@@ -136,5 +143,5 @@ for i in app_install.sections():
                        "expression": "{%s:proc.num[,,all,%s].max(#3)}=0"%(host_dic[i][1],v),"priority": 3,},],                                       
                        "auth": auth,"id": 4}                                                                                                         
             trig = requests.get(url,headers=header,data=json.dumps(trigger))                                                                         
-        print(hosts.json())                                                                                                                          
+        print(hosts.json()) 
         print(trig.json())

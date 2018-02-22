@@ -14,7 +14,7 @@ storm = storm.cache.RedisTotalCacheInitUtil 添加进程类型监控
 ## zabbix_group_jk.py
 
 ```
-通过修改脚本内部参数，针对某一个组内的ip来添加监控项。
+脚本跟参数，参数是zabbix组内的名称。针对某一个组内的ip来添加监控项。
 ```
 
 
