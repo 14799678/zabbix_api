@@ -6,6 +6,13 @@
 import json
 import requests
 import sys
+import settings
+
+ZABBIX_IP = settings.ZABBIX_IP
+ZABBIX_USER = settings.ZABBIX_USER
+ZABBIX_PASSWD = settings.ZABBIX_PASSWD
+
+
 
 # 触发器的名字
 trigger_name = "Time synchronization is more than 10 seconds"
@@ -16,7 +23,7 @@ group_name = u"研发测试1网段环境"
 
 ##################################################################################
 
-url = "http://192.168.2.193/zabbix/api_jsonrpc.php"
+url = "http://{ip}/zabbix/api_jsonrpc.php".format(ip=ZABBIX_IP)
 header = {"Content-Type": "application/json"}
 
 jsondata = json.dumps(
@@ -24,8 +31,8 @@ jsondata = json.dumps(
         "jsonrpc": "2.0",
         "method": "user.login",
         "params": {
-            "user": "admin",
-            "password": "smc@z9w5"
+            "user": "{user}".format(user=ZABBIX_USER),
+            "password": "{passwd}".format(passwd=ZABBIX_PASSWD)
         },
         "id": 0
     })

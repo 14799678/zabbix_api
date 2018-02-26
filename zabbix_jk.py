@@ -7,6 +7,11 @@
 import json
 import requests
 import ConfigParser
+import settings
+
+ZABBIX_IP = settings.ZABBIX_IP
+ZABBIX_USER = settings.ZABBIX_USER
+ZABBIX_PASSWD = settings.ZABBIX_PASSWD
 
 
 host_dic = {}
@@ -26,7 +31,7 @@ app_install = myconf()
 app_install.read('conf/port.conf')
 
 
-url = "http://192.168.2.193/zabbix/api_jsonrpc.php"
+url = "http://{ip}/zabbix/api_jsonrpc.php".format(ip=ZABBIX_IP)
 header = {"Content-Type": "application/json"}
 
 jsondata = json.dumps(
@@ -34,8 +39,8 @@ jsondata = json.dumps(
         "jsonrpc": "2.0",
         "method": "user.login",
         "params": {
-            "user": "admin",
-            "password": "smc@z9w5"
+            "user": "{user}".format(user=ZABBIX_USER),
+            "password": "{passwd}".format(passwd=ZABBIX_PASSWD)
         },
         "id": 0
     })
@@ -93,7 +98,7 @@ for i in app_install.sections():
             port = int(v.rstrip())
             print app,port,'port'
             check_port = {"jsonrpc": "2.0","method": "item.create","params": {"name": "%s port check"%app,"key_": "net.tcp.listen[%s]"%v,
-                         "hostid": "%s"%host_dic[i][0],"type": 0,"value_type": 3,"interfaceid": "%s"%host_dic[i][2],"delay": 60,'history':7},"auth": auth,"id": 1}
+                         "hostid": "%s"%host_dic[i][0],"type": 0,"value_type": 3,"interfaceid": "%s"%host_dic[i][2],"delay": "60s",'history':"7d"},"auth": auth,"id": 1}
             hosts = requests.get(url,headers=header,data=json.dumps(check_port))
 
             trigger = {"jsonrpc": "2.0","method": "trigger.create","params": [{"description": "%s port %s down"%(app,v),
@@ -105,7 +110,7 @@ for i in app_install.sections():
             print app,v,'supp'
             # supp
             check_server = {"jsonrpc": "2.0","method": "item.create","params": {"name": "%s process check"%app,"key_": "proc.num[,,all,%s]"%v,
-                         "hostid": "%s"%host_dic[i][0],"type": 0,"value_type": 3,"interfaceid": "%s"%host_dic[i][2],"delay": 60,'history':7},"auth": auth,"id": 1}
+                         "hostid": "%s"%host_dic[i][0],"type": 0,"value_type": 3,"interfaceid": "%s"%host_dic[i][2],"delay": "60s",'history':"7d"},"auth": auth,"id": 1}
             hosts = requests.get(url,headers=header,data=json.dumps(check_server))
 
             trigger = {"jsonrpc": "2.0","method": "trigger.create","params": [{"description": "%s process down"%app,
