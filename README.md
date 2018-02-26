@@ -10,8 +10,8 @@ storm = storm.cache.RedisTotalCacheInitUtil 添加进程类型监控
 
 ```
 
-# zabbix配置
-`settings.py` 修改配置文件<br>
+# zabbix_api 配置
+`settings.py` 修改配置文件内的`地址` `用户名` `密码`<br>
 
 ----
 
