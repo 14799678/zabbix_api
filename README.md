@@ -9,6 +9,10 @@ flume = 1463    添加端口类型监控
 storm = storm.cache.RedisTotalCacheInitUtil 添加进程类型监控
 
 ```
+
+# zabbix配置
+`settings.py` 修改配置文件<br>
+
 ----
 
 ## zabbix_group_jk.py
