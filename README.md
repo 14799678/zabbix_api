@@ -34,3 +34,12 @@ storm = storm.cache.RedisTotalCacheInitUtil 添加进程类型监控
 修改主机的监控项目名称与删除。
 
 ```
+
+## zabbix_jk_values.py
+
+```
+可以拿出所有主机的某项监控最后一次数值( item --> key )，并且排序或者字典格式打印。
+python zabbix_jk_values.py net.if.in[bond0] show_dic     # 字典格式打印，可以根据需求在自建平台出图等操作。
+python zabbix_jk_values.py net.if.in[bond0] show_sort    # value排序 从大到小
+
+```

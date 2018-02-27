@@ -6,86 +6,39 @@
 import json
 import requests
 import sys
-import settings
-
-ZABBIX_IP = settings.ZABBIX_IP
-ZABBIX_USER = settings.ZABBIX_USER
-ZABBIX_PASSWD = settings.ZABBIX_PASSWD
-
-
-
-
-
-url = "http://{ip}/zabbix/api_jsonrpc.php".format(ip=ZABBIX_IP)
+import auth
 header = {"Content-Type": "application/json"}
-
-jsondata = json.dumps(
-    {
-        "jsonrpc": "2.0",
-        "method": "user.login",
-        "params": {
-            "user": "{user}".format(user=ZABBIX_USER),
-            "password": "{passwd}".format(passwd=ZABBIX_PASSWD)
-        },
-        "id": 0
-    })
-
-
-
-
-
-r = requests.get(url,headers=header,data=jsondata)
-
-
-auth = r.json()['result']
-
-hosts_json ={
-    "jsonrpc": "2.0",
-    "method": "host.get",
-    "params": {
-        "output": [
-            "hostid",
-            "host"
-        ],
-        "selectInterfaces": [
-            "interfaceid",
-            "ip"
-        ]
-    },
-    "id": 2,
-    "auth": auth
-}
-
 
 
 class Item_update(object):
     def __init__(self,key,rename=None):
         self.hostid_value = {}
-        self.host_id_list = []
         self.name_value = {}
         self.key = key
         self.rename = rename
-        self.list_item = {"jsonrpc": "2.0","method": "item.get","params": {"output": "extend","search":{"key_": self.key},"sortfield": "name"},"auth":auth,"id": 2}
-        hosts = requests.get(url,headers=header,data=json.dumps(self.list_item))
+        auth_id = auth.auth()
+        self.list_item = {"jsonrpc": "2.0","method": "item.get","params": {"output": "extend","search":{"key_": self.key},
+                         "selectInterfaces": ["interfaceid","ip"],"sortfield": "name"},"auth":auth_id,"id": 2}
+        hosts = requests.get(auth.url,headers=header,data=json.dumps(self.list_item))
         for i in hosts.json()['result']:
-            print(i)
-            self.hostid_value[i["hostid"]] = i["lastvalue"] 
-            print("------------")
+            self.hostid_value[i["interfaces"][0]["ip"]] = i["lastvalue"] 
+
+    def show_sort(self):
+        sort_list = sorted(self.hostid_value.items(),key = lambda x:int(x[1]),reverse = True)
+        for line in sort_list:
+            print(line)
+
+    def show_dic(self):
         print(self.hostid_value)
-        self.host_id_list = self.hostid_value.keys()
 
-    def get_group_name(self):
-        hosts_json ={"jsonrpc": "2.0","method": "hostgroup.get","params": {"output": "extend","hostids": self.host_id_list,"selectHosts":["hostid"]},
-                     "id": 2,"auth": auth}
-        groups = requests.get(url,headers=header,data=json.dumps(hosts_json))
-        for num,i in enumerate(groups.json()["result"]):
-            print(num,i)
-            for host_id in i['hosts']:
-                if host_id['hostid'] in self.hostid_value:
-                    self.name_value[i['name']] = self.hostid_value[host_id['hostid']]
-                    break
+if __name__ == "__main__":
+    # 监控的item 如：net.if.in[eth0]
 
-        print(self.name_value)
+    if len(sys.argv) == 1:
+        print(u"请跟参数,参数为 item的 key信息来获取所有主机的最后一次数据")
+        exit(1)
 
-a = Item_update('car_num')
-a.get_group_name()
+    item_key = sys.argv[1]
+    status_name = sys.argv[2]
+    a = Item_update(item_key)
+    getattr(a,status_name)()
