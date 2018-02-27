@@ -43,3 +43,9 @@ python zabbix_jk_values.py net.if.in[bond0] show_dic     # 字典格式打印，
 python zabbix_jk_values.py net.if.in[bond0] show_sort    # value排序 从大到小
 
 ```
+## zabbix_host_item_value.py 
+
+```
+用来获取某一个主机的某一项监控值(最后一次)。
+python zabbix_host_item_value.py cnbjsjqpsgjredis01 car_num    # 用法第一个参数为主机名，第二个为监控项的key
+```
