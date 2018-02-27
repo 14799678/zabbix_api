@@ -46,6 +46,6 @@ python zabbix_jk_values.py net.if.in[bond0] show_sort    # value排序 从大到
 ## zabbix_host_item_value.py 
 
 ```
-用来获取某一个主机的某一项监控值(最后一次)。
+用来获取某一个主机的某一项监控值(最后一次)。 可以根据需求在自建平台抓取数据展示。
 python zabbix_host_item_value.py cnbjsjqpsgjredis01 car_num    # 用法第一个参数为主机名，第二个为监控项的key
 ```
