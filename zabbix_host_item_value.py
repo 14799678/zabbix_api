@@ -34,5 +34,5 @@ if __name__ == "__main__":
         exit(1)
     hostname = sys.argv[1]
     item_key = sys.argv[2]
-    a = Item_update(hostname,item_key)
+    a = Get_host_item(hostname,item_key)
     a.show_item()
